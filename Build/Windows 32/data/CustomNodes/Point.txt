@@ -1,0 +1,4 @@
+setTitle('Point');
+addInput('x');
+addInput('y');
+drawPoint(x,y);

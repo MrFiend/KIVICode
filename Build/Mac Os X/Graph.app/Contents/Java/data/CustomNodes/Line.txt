@@ -1,0 +1,6 @@
+setTitle('Line');
+addInput('Xfrom');
+addInput('Yfrom');
+addInput('Xto');
+addInput('Yto');
+drawLine(Xfrom,Yfrom,Xto,Yto);

@@ -1,0 +1,5 @@
+setTitle('CMatrix');
+addInput('radius');
+addInput('num');
+addInput('inp');
+makeCircleMatrix(radius,num,inp);

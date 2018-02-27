@@ -1,0 +1,6 @@
+setTitle('Rect');
+addInput('x');
+addInput('y');
+addInput('w');
+addInput('h');
+drawRect(x,y,w,h);

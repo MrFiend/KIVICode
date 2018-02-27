@@ -1,0 +1,7 @@
+setTitle('M3_cut');
+addInput('x');
+addInput('y');
+addInput('distX');
+addInput('distY');
+drawCircle(x+distX,y+distY,15);
+drawCircle(x-distX,y-distY,15);

@@ -1,0 +1,8 @@
+setTitle('Tringle');
+addInput('x');
+addInput('y');
+addInput('a');
+addInput('b');
+drawLine(x,y,x+a,y);
+drawLine(x+a,y,x+a,y+b);
+drawLine(x+a,y+b,x,y);

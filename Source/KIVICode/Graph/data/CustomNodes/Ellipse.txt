@@ -1,0 +1,5 @@
+setTitle('Ellipse');
+addInput('x');
+addInput('y');
+addInput('r');
+drawCircle(x,y,r);

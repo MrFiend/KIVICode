@@ -1,0 +1,9 @@
+setTitle('Gear');
+addInput('Xcenter');
+addInput('Ycenter');
+addInput('notches');
+addInput('radiusO');
+addInput('radiusI');
+addInput('tapperO');
+addInput('tapperI');
+generateGear(Xcenter,Ycenter,notches,radiusO,radiusI,tapperO,tapperI);

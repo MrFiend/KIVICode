@@ -1,0 +1,9 @@
+setTitle('ArcOut');
+addInput('X');
+addInput('Y');
+addInput('Xr');
+addInput('Yr');
+addInput('Wr');
+addInput('Hr');
+addInput('Rad');
+drawArcOut(Xr,Yr,Wr,Hr,X,Y,Rad);

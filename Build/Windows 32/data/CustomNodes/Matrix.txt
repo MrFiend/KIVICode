@@ -1,0 +1,6 @@
+setTitle('Matrix');
+addInput('x');
+addInput('y');
+addInput('step');
+addInput('inp');
+makeMatrix(x,y,step,inp);
