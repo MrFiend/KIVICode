@@ -103,6 +103,7 @@ boolean first_line = true;
 int filesaved = 0;
 
 PGraphics svgOut;
+String dataPath;
 /*        Export svg -> gcode  */
 
 CWindow debug;
@@ -110,7 +111,8 @@ void setup() {
   ico = loadImage("data/icon.png");
   surface.setIcon(ico);
   String OS = System.getProperty("os.name").toLowerCase(); 
-  println(OS);
+  dataPath = dataPath("");
+  println(dataPath);
   if (OS.equals("mac os x")) {
     stick = "/";
   } else if (OS.equals("windows")) {
@@ -122,11 +124,11 @@ void setup() {
   textAlign(CENTER);
   text("Loading...", width/2, height/2);
 
-   String pin2 = showInputDialog("Enter computer's PIN");
-   pin = (int(pin2));
+  String pin2 = showInputDialog("Enter computer's PIN");
+  pin = (int(pin2));
   if (pin2 != "") {
-  c = new Client(this, "127.0.0.1", 6496);
-   }
+    c = new Client(this, "127.0.0.1", 6496);
+  }
 
   surface.setResizable(true);
   background(21);
@@ -155,8 +157,8 @@ void setup() {
   engine.put("es", this);
 
   globalOutput = createShape(GROUP);
-  console = new Console(this);
-  debug = new CWindow();
+  //console = new Console(this);
+  //debug = new CWindow();
   //circleOut = createShape(GROUP);
   frameRate(60);
 }
@@ -176,10 +178,6 @@ void draw() {
     drawSpline(line.get(index).x+5, traceY, mouseX-transX, mouseY-transY);
   }
   surface.setTitle("Graph " + int(frameRate));
-}
-
-void mouseMoved() {
-  println(stick);
 }
 
 void exit() {
@@ -649,7 +647,7 @@ void keyPressed() {
     selectInput("Select a file to open:", "Load");
     return;
   } else {
-    
+
     c = new Client(this, "127.0.0.1", int(showInputDialog("Enter new pin")));
   }
 }
@@ -782,40 +780,40 @@ void saveFunction(File selection) {
       lines.setBoolean("isNode", false);
       lines.setBoolean("isVector", true);
       lines.setBoolean("isPoint", true);
-      
+
       lines.setFloat("x", points.get(k).x);
       lines.setFloat("y", points.get(k).y);
-      
+
       lines.setFloat("px", points.get(k).px);
       lines.setFloat("py", points.get(k).py);
-      
+
       lines.setBoolean("selected", points.get(l).selected); 
       lines.setBoolean("isCenterOfCircle", points.get(l).isCenterOfCircle);
-      
+
       lines.setInt("index", points.get(l).index);
       lines.setInt("pairIndex", points.get(l).pairIndex);
-      
+
       lines.setInt("vert_size", points.get(l).vert.size());
       lines.setInt("horiz_size", points.get(l).horiz.size());
       lines.setInt("equals_size", points.get(l).equals.size());
       lines.setInt("lengthTo_size", points.get(l).lengthTo.size());
-      
+
       for (int i_ = 0; i_ < points.get(l).vert.size(); i_++) {
         lines.setInt("vert_"+i_, points.get(l).vert.get(i_));
       }
-      
+
       for (int i_ = 0; i_ < points.get(l).horiz.size(); i_++) {
         lines.setInt("horiz_"+i_, points.get(l).horiz.get(i_));
       }
-      
+
       for (int i_ = 0; i_ < points.get(l).equals.size(); i_++) {
         lines.setInt("equals_"+i_, points.get(l).equals.get(i_));
       }
-      
+
       for (int i_ = 0; i_ < points.get(l).lengthTo.size(); i_++) {
         lines.setString("lengthTo_"+i_, points.get(l).lengthTo.get(i_));
       }
-      
+
       l++;
     }
     values.setJSONObject(i, lines); 

@@ -23,9 +23,10 @@ public class EditorNode extends PApplet {
     // G4P.setGlobalColorScheme(0);
     this.surface.setResizable(true);
 
-    txaSample = new GTextArea(this, 0, 0, width+5, height+5, G4P.SCROLLBARS_NONE);
-    txaSample.setText(name, 310);
+    txaSample = new GTextArea(this, -5, -5, width+10, height+10, G4P.SCROLLBARS_NONE);
+    txaSample.setText(name, 320);
     txaSample.setPromptText("Please enter your code");
+    
     removeExitEvent(this.surface);
   }
 
@@ -49,15 +50,29 @@ public class EditorNode extends PApplet {
   }
   void saveNode() {
     if (isNew) {
-      saveStrings(dataPath("CustomNodes") + stick + showInputDialog("Enter name of new node")+".txt", split(txaSample.getText(), "\n"));
+      String newName = showInputDialog("Enter name of new node");
+      println(dataPath + stick + "CustomNodes" + stick + newName+".txt");
+      PrintWriter p = createWriter(dataPath + stick + "CustomNodes" + stick + newName+".txt");
+      for (int i = 0; i < split(txaSample.getText(), ";").length-1; i++ ) {
+        p.println(split(txaSample.getText(), ";")[i]+";");
+      }
+      p.flush();
+      //saveStrings(dataPath + stick + "CustomNodes" + stick + newName+".txt", split(txaSample.getText(), "\n"));
+      name = newName;
       isNew = false;
     } else {
-      saveStrings(dataPath("CustomNodes") + stick + name, split(txaSample.getText(), "\n"));
+      println(dataPath + stick + "CustomNodes" + stick + name);
+      PrintWriter p = createWriter(dataPath + stick + "CustomNodes" + stick + name);
+      for (int i = 0; i < split(txaSample.getText(), ";").length-1; i++ ) {
+        p.println(split(txaSample.getText(), ";")[i]+";");
+      }
+      p.flush();
     }
   }
 
   void newNode() {
     txaSample.setText("");
+    name =  "newNode.txt";
     isNew = true;
   }
   public Object getSurf() {

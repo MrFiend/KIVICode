@@ -36,6 +36,7 @@ public class myMenuListener implements ActionListener, ItemListener {
       }
     } else if (source.getLabel().endsWith(".txt")) {
       edit.setNameOfFile(source.getLabel());
+      edit.isNew = false;
       edit.setVis(true);
     } else if (isFileNode(source.getLabel())) { //<>//
       float val = float(int(random(0, 300)));
